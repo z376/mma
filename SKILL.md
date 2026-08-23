@@ -15,7 +15,7 @@ description: |
   Do NOT use for: general data analysis, one-off Python scripts, or research
   questions that don't lead to a 论文.pdf deliverable.
 metadata:
-  version: "2.1"  # 加《参赛规则》合规说明
+  version: "3.0"  # v3:统一 6 阶段编号 + 快速模式 + 局部修改 + 新章节结构
   category: competition-workflow
   scope: user
   spec:
@@ -31,15 +31,39 @@ metadata:
     - eval-checklist: references/eval-checklist.md
     - ai-declaration-template: 论文/0.AI声明.tex
     - ai-detail-template: references/AI工具使用详情-template.md
+    - scripts: references/scripts/
   related-skills:
     - bzd-modeling-ideas: Stage 2 已升级到 bzd 的 8 段结构(整题主线 + 跨问题联动链)
     - scipilot-figure-skill: 代码手 Stage 3 绘图原则已集成(15 条避坑 + setup_style 配环境)
 ---
 
-# Math Modeling Agent (mma)
+# Math Modeling Agent (mma) — v3
 
 数学建模竞赛端到端解题 + 论文写作 agent。自用版,设计目标:
 **跑出来能交、能得分的论文。**
+
+---
+
+## ⚡ 快速模式(单次任务直接走)
+
+跳过完整 6 阶段,直接进入指定阶段或局部修改:
+
+| 用户说 | 跳到 | 说明 |
+|--------|------|------|
+| "开始建模" / "求解这道题" | Stage 1 | 完整流程(默认) |
+| "**只写论文**" / "跳过求解" | Stage 4 | 假设 求解/ 已就绪,直接写 LaTeX |
+| "**只跑代码**" / "求解" | Stage 3 | 假设 求解计划.md 已就绪,只跑 py |
+| "**只验收**" / "检查" | Stage 5 | 假设 论文.tex 已就绪,跑 eval-checklist |
+| "**只出 PDF**" / "编译" | Stage 6 | 跑 build.ps1 编译两份 PDF |
+| "**改这一章**" / "改 XX" | 局部修改 | 改单个 .tex(7.优缺点评价 等) |
+| "**改格式**" / "改排版" | 局部修改 + 编译 | 调 format.cls 后跑 build.ps1 |
+| "**加一条参考文献**" | 局部修改 | 改 9.参考文献.tex + 加 \cite |
+| "**加一张图**" / "换图" | 局部修改 + 编译 | 改 .tex 的 \includegraphics + 跑 build.ps1 |
+| "**重出 PDF**" | Stage 6 | 同 "只出 PDF" |
+
+> 快速模式 = 跳到对应阶段 + 跳过上一阶段产物检查(用户自担保)。
+
+---
 
 ## 4 个角色(内部分工)
 
@@ -55,26 +79,36 @@ mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执�
 
 这样分的好处:每阶段 prompt 边界清晰,失败时容易定位是哪个角色没做好。
 
-## 6 阶段流程
+---
+
+## 6 阶段流程(完整模式)
 
 详细步骤见 `references/workflow.md`。
 
 | Stage | 角色 | 关键产物 | 退出条件 |
 |-------|------|---------|---------|
-| 1. 读题 | 建模手 | 问题列表 N、数据概览 | 列出 N 个问题+数据 shape |
+| 1. 读题 | 建模手 | 问题列表 N、数据概览(每个文件 shape/dtypes/缺失率) | N 个问题 + 类型分类确认 |
 | 2. 建模 | 建模手 | **8 段建模思路**(bzd 风格) → 用户拍板 → 求解计划 | 建模思路.md + 求解计划.md + 用户确认 |
-| 3. 求解 | 代码手 | 每个问题一个 py + 4-6 张图 + 结果 csv | 所有 py 运行无错 + 图够数 |
-| 4. 写作 | 论文手 | 10 章 LaTeX + 公式 + 流程图 | 全部 .tex 写完 |
-| 5. 验收 | 验收手 | 编译通过 + 数值一致 + 硬规则全过 | eval-checklist 全过 |
-| 6. 出 PDF | 验收手 | `论文/论文.pdf` | PDF 存在且能打开 |
+| 3. 求解 | 代码手 | 每个问题一个 py + 4-6 张图 + 结果 csv + 预处理数据.csv | 所有 py 运行无错 + 图够数 |
+| 4. 写作 | 论文手 | 11 个 .tex(0.摘要 + 1.问题重述 + 2.问题分析 + 3.假设 + 4.符号 + 5.建立求解 + 6.检验 + 7.优缺点 + 0.AI声明 + 9.参考文献 + 10.附录) | 全部 .tex 写完 + 自检通过 |
+| 5. 验收 | 验收手 | 编译通过 + 数值一致 + 硬规则全过 | eval-checklist 全过(38+ 项) |
+| 6. 出 PDF | 验收手 | `论文/论文.pdf` + `论文/电子版.pdf` | 两份 PDF 存在且能打开 |
+
+---
 
 ## 触发
 
-用户说以下任一即启动:
-- "开始建模"/"求解数模题"/"做这道数模题"/"出论文"
-- "生成建模论文"/"出论文 PDF"
+用户说以下任一即启动(自动识别快速模式/完整模式):
+
+**完整流程触发词**:
+- "开始建模" / "求解数模题" / "做这道数模题" / "出论文"
+- "生成建模论文" / "出论文 PDF"
 - "国赛/美赛/MCM/ICM/CUMCM 求解"
 - 粘贴赛题 PDF + 让我做
+
+**快速模式触发词**(见上节"快速模式")。
+
+---
 
 ## 必要输入(启动前确认)
 
@@ -82,11 +116,45 @@ mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执�
 2. `数据/` 目录有 xlsx/csv(如果有附件)
 3. 建模类型(优化/评价/预测/分类/机理)用户是否已知
 
+**自动检查**:跑 `references/scripts/check_input.ps1` 一键检查前两项。
+
 **缺任一就停下等用户补齐**,不要瞎猜。
 
-## 关键引用
+---
 
-按需读:
+## 论文结构(v3 章节命名,2026 Word 模板对齐)
+
+```
+论文/
+├── 0.摘要.tex              ← Stage 4 第 1 个写
+├── 1.问题重述.tex          ← (1.引言 已重命名)
+├── 2.问题分析.tex          ← (2.总体分析 已重命名,加 1.1/1.2/1.3 + 整体思路图)
+├── 3.模型假设.tex
+├── 4.符号说明.tex
+├── 5.模型的建立与求解.tex  ← 4 个 \subsection(问题 1/2/3/4)
+│   ├── 5.1.1.数据预处理.tex         ← 5.x.1:数据预处理
+│   ├── 5.1.2.XXX模型的建立.tex      ← 5.x.2:建模
+│   ├── 5.1.3.XXX模型的求解.tex      ← 5.x.3:求解
+│   ├── 5.1.4.XXX模型的检验.tex      ← 5.x.4:检验
+│   ├── 5.1.5.XXX结果的分析.tex      ← 5.x.5:分析
+│   ├── 5.2.x ~ 5.4.x                ← 同结构,问题 2/3/4
+├── 6.模型检验.tex          ← 6.1 误差 / 6.2 灵敏度 / 6.3 稳健性
+├── 7.模型优缺点评价.tex    ← (7.模型评价 已重命名)
+│                              7.1 优点 / 7.2 缺点 / 7.3 改进
+├── 0.AI声明.tex            ← AI 工具使用声明(放 9.参考文献 之前)
+├── 9.参考文献.tex
+├── 10.附录.tex             ← 附录 1 文件列表 / 附录 2 源代码 / 附录 3 其他
+├── 论文.tex                ← 纸质版入口
+├── 电子版.tex              ← 电子版入口(跳过承诺书+编号页)
+├── format.cls              ← 2026 规范
+└── fonts/                  ← SourceHanSerifCN
+```
+
+**8.章已删除**(并入 7.3 改进)。
+
+---
+
+## 关键引用(按需读)
 
 - **完整工作流** → `references/workflow.md`
 - **论文硬规则** → `references/paper-spec.md`
@@ -96,6 +164,9 @@ mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执�
 - **求解代码模板** → `references/code-template.py`
 - **AI 工具使用声明模板** → `论文/0.AI声明.tex`(放在 9.参考文献.tex 之前)
 - **AI 工具使用详情模板** → `references/AI工具使用详情-template.md`(放在 支撑材料)
+- **辅助脚本** → `references/scripts/`(check_input / build / auto_verify)
+
+---
 
 ## 目录约定(项目工作区)
 
@@ -107,6 +178,7 @@ mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执�
 ├── 数据/                    # 附件 xlsx/csv
 ├── 求解/
 │   ├── 求解计划.md
+│   ├── 建模思路.md          # Stage 2 输出
 │   ├── 预处理数据.csv       # 问题1 输出,后续共用
 │   ├── 预处理数据.py
 │   └── 问题X/
@@ -133,27 +205,38 @@ mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执�
 - `xelatex 论文.tex` → `论文.pdf`(纸质版提交,含承诺书+编号页)
 - `xelatex 电子版.tex` → `电子版.pdf`(电子版提交,跳过承诺书+编号页)
 
+**自动编译**:跑 `references/scripts/build.ps1` 一键编译两份 PDF。
+
+---
+
 ## Windows (win32) 平台注意
 
 - LaTeX:`xelatex -interaction=nonstopmode 论文.tex`
-- Python:`python`(不是 `python3`)
+- Python:`python`(不是 `python3`),用 `py -3` 调用本地 Python
 - 字体:`论文/fonts/SourceHanSerifCN-*.otf`(已自带)
 - 路径分隔符:`\`(Windows),LaTeX 用 `/`(跨平台)
 - 文件校验:`Test-Path 论文/论文.pdf`
 
-## 与 li-mrite / li-mtrie 的关系
+---
+
+## 与 li-mrite / li-mtrie / bzd-modeling-ideas 的关系
 
 mma 继承自 li-mrite(早期 2024 模板,硬规则一致),已升级到 **2026 全国数模规范**:
 
 - ✅ 显式 4 角色分工(prompt 层面,不是进程层面)
 - ✅ 独立"验收"阶段 + 结构化验收清单
 - ✅ 模型选择决策树(快速匹配候选模型)
-- ✅ **2026 规范升级**:format.cls 来自 li-mtrie（2026），支持 `withpreface` / `electronic` 双模式
+- ✅ **2026 规范升级**:format.cls 来自 li-mtrie(2026),支持 `withpreface` / `electronic` 双模式
 - ✅ **2026 规范第 3 条**:AI 工具使用声明模板(`论文/0.AI声明.tex`)
 - ✅ **2026 规范第 4 条**:AI 工具使用详情模板(`references/AI工具使用详情-template.md`)
 - ✅ **2026 规范第 5/11 条**:附录含「程序使用说明」+「支撑材料说明」两段固定说明
+- ✅ **v3 章节重命名**:1.引言→1.问题重述、2.总体分析→2.问题分析、7.模型评价→7.模型优缺点评价
+- ✅ **v3 5.x 子节拆分**:每个问题 5 个子节(数据预处理/建模/求解/检验/结果分析)
+- ✅ **v3 删 8 章**:并入 7.3 改进
 - ⏸ 暂不引入:HIL、RAG、多模型 fallback(自用不需要)
 - ⏸ 暂不引入:Typst 替代 LaTeX(自用,稳优先)
+
+---
 
 ## 失败处理(常见)
 
@@ -163,21 +246,13 @@ mma 继承自 li-mrite(早期 2024 模板,硬规则一致),已升级到 **2026 �
 | 模型过拟合 | 降低 max_depth/增加正则化 |
 | 预测值异常 | 检查数据泄露 |
 | 交叉验证方差大 | 增加折数或重复 CV |
-| xelatex Error | grep 看具体错;连续 2 次失败切换策略 |
+| xelatex Error | grep 看具体错;连续 2 次失败切换策略(看 build.log) |
 | Overfull/Underfull | 调列宽/换行;2 次修不好允许 `\\newline` |
 | py 脚本报错 | 修 → 重跑,通过再下一问 |
+| 用户拍板耗时 | 给"默认方案"提示,用户不选就按默认走 |
+| 局部改 .tex 编译失败 | 回到 git HEAD 看 diff,回滚后重试 |
 
-## Examples
-
-**Input**: 用户说"开始建模",工作区已放 2024 国赛 B 题 PDF + 附件 xlsx。
-
-**Output**: 启动 Stage 1 → 读题读数据 → 打印"识别到 4 个问题..." → 列出每问
-候选模型对比表 → 等待用户选 → 按选定方案求解 → 写论文 → 验收 → 出 PDF。
-
-**Input**: 用户说"直接生成论文"(题和数据已就位,求解已完成)。
-
-**Output**: 跳到 Stage 4,按 `references/paper-spec.md` 10 章规范逐章写 LaTeX →
-Stage 5 验收 → Stage 6 出 PDF。
+---
 
 ## ⚠️ 参赛规则合规(2026 修订稿)
 
@@ -192,5 +267,20 @@ mma 同样**仅用于赛后整理论文**,不参与竞赛期间的赛题解答�
 
 **违规后果**:取消评奖 + 指导教师两年禁赛 + 通报批评 + 赛区缩减送全国评阅论文数量。
 
-完整 4 角色 prompt + Stage 5 验收清单(已含 F.4 参赛规则检查项)见 
-eferences/。
+完整 4 角色 prompt + Stage 5 验收清单(已含 F.4 参赛规则检查项)见 `references/`。
+
+---
+
+## Examples
+
+**Input**: 用户说"开始建模",工作区已放 2024 国赛 B 题 PDF + 附件 xlsx。
+
+**Output**: 启动 Stage 1 → 跑 check_input.ps1 验证输入 → 读题读数据 → 打印"识别到 4 个问题..." → 列出每问候选模型对比表 → 等待用户选 → 按选定方案求解 → 写论文 → 跑 auto_verify.ps1 验收 → 跑 build.ps1 出 PDF。
+
+**Input**: 用户说"只写论文"(题和数据已就位,求解已完成)。
+
+**Output**: 跳到 Stage 4,按 `references/paper-spec.md` 11 章规范逐章写 LaTeX → Stage 5 验收 → Stage 6 跑 build.ps1 出 PDF。
+
+**Input**: 用户说"改一下 7.优缺点评价"。
+
+**Output**: 改 7.模型优缺点评价.tex → 跑 build.ps1 重出 PDF → 展示 diff。
