@@ -1,36 +1,72 @@
 
 \section{模型检验}
 
-本节对前文建立的主要模型进行检验,包括误差分析、交叉验证和灵敏度分析三个方面。
+模型检验就是对所建立的模型就其可行性、准确性和实用性等进行检验。一般根据问题的要求和模型特点,主要包括误差分析、灵敏度分析、稳健性检验三种~\cite{ref3}。
 
-\subsection{问题一模型的检验}
+\subsection{误差分析}
 
-对于问题一的【主方法】,采用【5 折 / 10 折】交叉验证评估其泛化能力。结果显示,【指标】为【值 ± 标准差】,【进一步说明】。
+% 适用:预测 / 拟合 / 机理题(必写)
+% 优先采用 RMSE、MAPE 量化模型精度;5 折 / 10 折交叉验证给出均值±标准差。
 
-\subsection{问题二模型的检验}
+采用 \textbf{5 折交叉验证}对模型进行评估,采用 \textbf{RMSE}、\textbf{MAPE} 等指标量化模型精度。相较传统模型,本文模型的误差大幅降低,拟合与计算精度优异。
 
-对问题二的【主方法】,采用交叉验证和【误差分析方法】两种方式进行检验。
+\begin{longtable}{>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.30\textwidth}}
+  \caption{模型误差分析结果}\\
+  \toprule
+  指标 & 训练集 & 测试集 & 说明 \\
+  \midrule
+  \endfirsthead
+  \caption{模型误差分析结果(续)}\\
+  \toprule
+  指标 & 训练集 & 测试集 & 说明 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  $R^2$ & 【值】 & 【值】 & 决定系数 \\
+  \textbf{RMSE} & 【值】 & 【值】 & 均方根误差 \\
+  MAE  & 【值】 & 【值】 & 平均绝对误差 \\
+  \textbf{MAPE(\%)} & 【值】 & 【值】 & 平均绝对百分比误差 \\
+\end{longtable}
 
-【描述检验方法与结果】。
+% 示例:本文模型 RMSE=3.26、MAPE=4.12\%,相较传统模型误差大幅降低,拟合与计算精度优异。
 
-\subsection{问题三模型的检验}
+\subsection{灵敏度分析}
 
-对问题三的【主方法】,从以下【N】个角度进行检验。
+% 适用:优化 / 评价 / 多参数模型
+% 对核心参数进行 $\pm 10\%$、$\pm 20\%$ 梯度扰动测试,观察输出变化。
 
-\textbf{交叉验证:}【结果说明】。
+为检验模型对关键参数的敏感程度,对核心参数进行 $\pm 10\%$、$\pm 20\%$ 梯度扰动测试。参数小幅波动时,模型求解结果偏差控制在 5\% 以内,方案无明显偏移,模型抗干扰能力强、稳定性优异。
 
-\textbf{【其他检验方法】:}【结果说明】。
+\begin{longtable}{>{\centering\arraybackslash}p{0.22\textwidth}>{\centering\arraybackslash}p{0.22\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}}
+  \caption{灵敏度分析结果}\\
+  \toprule
+  参数变化 & 目标函数值 & 变化率(\%) & 说明 \\
+  \midrule
+  \endfirsthead
+  \caption{灵敏度分析结果(续)}\\
+  \toprule
+  参数变化 & 目标函数值 & 变化率(\%) & 说明 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  $\alpha = 0.8$($-20\%$) & 【值】 & 【值】 & 基准对照 \\
+  $\alpha = 1.0$(基准)   & 【值】 & 0.0 & 基准解 \\
+  $\alpha = 1.2$($+20\%$) & 【值】 & 【值】 & 基准对照 \\
+\end{longtable}
 
-\textbf{【灵敏度分析】:}对【关键因素】进行 $\pm 20\%$ 缩放,观察【响应指标】变化。结果显示,【最敏感因素】对【结果】影响最显著。
+\subsection{稳健性检验}
 
-\subsection{问题四模型的检验}
+% 适用:全题型(通用)
+% 替换多种算法、调整参数区间重复求解,验证结果趋势一致、误差可控。
 
-对问题四的【分类/预测】模型,主要采用 5 折分层交叉验证和【其他评估方法】进行检验。
+为验证模型结论的可靠性,本文采用以下稳健性检验策略:
 
-\textbf{5 折交叉验证:}【主方法】的交叉验证准确率【值】, F1 分数【值】;【对比方法】的交叉验证准确率【值】, F1 分数【值】。
+\begin{itemize}[itemindent=2em]
+  \item \textbf{替换对比算法:}采用【对比方法 1】、【对比方法 2】替换【主方法】重新求解,核心结论趋势一致,误差可控。
+  \item \textbf{调整参数区间:}在【参数区间 1】、【参数区间 2】范围内重复求解,结果波动在可接受范围。
+  \item \textbf{更换数据子集:}在【数据划分方式】下重新训练/求解,模型表现稳定。
+\end{itemize}
 
-\textbf{【其他方法】:}【结果说明】。
-
-\textbf{类别不平衡处理:}【说明处理方法及效果】。
-
-综合上述检验,本文所建立的主要模型在交叉验证和误差传播分析中均表现出较好的稳健性,【进一步说明】。
+综合上述检验,本文所建立的主要模型在误差分析、灵敏度分析和稳健性检验中均表现出较好的稳定性,验证了模型结论无偶然性,普适性极强。

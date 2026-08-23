@@ -1,9 +1,9 @@
 
 \section*{附录}
 
-\subsubsection*{一、程序使用说明}
+\subsection*{附录 1\quad 附件的文件列表}
 
-\textbf{本论文使用了程序。}建模与求解所用到的全部源程序代码、关键中间图与结果数据详见下表。
+介绍:本附录给出与本论文相关的附件清单,涵盖原始数据、预处理脚本、求解代码、过程图与结果数据等。
 
 \begin{longtable}{>{\centering\arraybackslash}p{0.40\textwidth}>{\centering\arraybackslash}p{0.56\textwidth}}
   \caption{附件说明表}\\
@@ -18,6 +18,7 @@
   \endhead
   \bottomrule
   \endfoot
+  数据/附件.xlsx & 原始数据 \\
   求解/预处理数据.py & 通用预处理脚本 \\
   求解/预处理数据.csv & 预处理后共享数据 \\
   求解/问题1/问题1\_xxx.py & 问题 1 求解代码 \\
@@ -34,42 +35,132 @@
   求解/问题4/结果/ & 问题 4 求解结果 csv \\
 \end{longtable}
 
-\noindent\textbf{运行说明:} 全部 Python 程序均基于 Python 3.12 编写,主要依赖 numpy、pandas、scikit-learn、scipy、matplotlib 等开源库。在已配置好依赖的环境中,直接运行各问题对应的 \texttt{问题X\_xxx.py} 即可复现论文中的全部图表与结果。预处理脚本 \texttt{预处理数据.py} 需在读取原始数据后首先执行,其输出 \texttt{预处理数据.csv} 供后续各问题共享。
+\subsection*{附录 2\quad 源代码}
 
-\subsubsection*{二、支撑材料说明}
+\subsubsection*{问题 1 源代码}
 
-\textbf{本论文提供了支撑材料。}支撑材料内容包括:原始数据附件、问题求解完整源程序、问题求解结果 CSV、中间过程图(PNG)与 AI 工具使用详情(PDF)。具体清单如下表所示。
+介绍:该代码由 Python 3.12 编写,实现问题 1 的【方法名】模型构建、训练与求解。
 
-\begin{longtable}{>{\centering\arraybackslash}p{0.40\textwidth}>{\centering\arraybackslash}p{0.56\textwidth}}
-  \caption{支撑材料文件清单}\\
-  \toprule
-  文件 & 说明 \\
-  \midrule
-  \endfirsthead
-  \caption{支撑材料文件清单(续)}\\
-  \toprule
-  文件 & 说明 \\
-  \midrule
-  \endhead
-  \bottomrule
-  \endfoot
-  数据/附件.xlsx & 原始 NIPT 检测数据 \\
-  求解/预处理数据.py & 通用预处理脚本 \\
-  求解/预处理数据.csv & 预处理后共享数据 \\
-  求解/求解计划.md & 方案比选与详细求解计划 \\
-  求解/问题*/图片/*.png & 全部中间过程图 \\
-  求解/问题*/结果/*.csv & 全部结果 CSV \\
-  求解/问题*/问题*\_*.py & 全部源程序 \\
-  论文/AI工具使用详情.pdf & AI 工具使用详情 \\
-\end{longtable}
+\begin{lstlisting}[language=Python,caption={问题 1 主求解代码}]
+# -*- coding: utf-8 -*-
+"""
+问题 1 主求解代码
+方法:【主方法】
+"""
+import numpy as np
+import pandas as pd
 
-\noindent\textbf{提交方式:} 全部支撑材料文件应使用 WinRAR 或类似软件压缩为一个文件(后缀为 RAR 或 ZIP,大小不超过 20MB),与论文电子版(PDF)分开提交。承诺书和编号专用页不要放在支撑材料中。所有文件中不能有显示参赛者身份和所在学校及赛区的信息。
+def main():
+    # 读取数据
+    data = pd.read_csv("../求解/预处理数据.csv")
+    X = data.drop(columns=["target"]).values
+    y = data["target"].values
 
-\subsubsection*{三、运行环境}
+    # 模型建立与求解
+    # TODO: 根据具体问题实现
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\noindent\textbf{该部分代码使用 AI 工具:}DeepSeek, DeepSeek-R1-0528, 深度求索(DeepSeek), 2025-09-05。
+
+\subsubsection*{问题 2 源代码}
+
+介绍:该代码由 Python 3.12 编写,实现问题 2 的【方法名】模型构建、训练与求解。
+
+\begin{lstlisting}[language=Python,caption={问题 2 主求解代码}]
+# -*- coding: utf-8 -*-
+"""
+问题 2 主求解代码
+方法:【主方法】
+"""
+import numpy as np
+import pandas as pd
+
+def main():
+    # 读取数据
+    data = pd.read_csv("../求解/预处理数据.csv")
+    # TODO: 根据具体问题实现
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\noindent\textbf{该部分代码使用 AI 工具:}DeepSeek, DeepSeek-R1-0528, 深度求索(DeepSeek), 2025-09-05。
+
+\subsubsection*{问题 3 源代码}
+
+介绍:该代码由 Python 3.12 编写,实现问题 3 的【方法名】模型构建、训练与求解。
+
+\begin{lstlisting}[language=Python,caption={问题 3 主求解代码}]
+# -*- coding: utf-8 -*-
+"""
+问题 3 主求解代码
+方法:【主方法】
+"""
+import numpy as np
+import pandas as pd
+
+def main():
+    # 读取数据
+    data = pd.read_csv("../求解/预处理数据.csv")
+    # TODO: 根据具体问题实现
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\noindent\textbf{该部分代码使用 AI 工具:}DeepSeek, DeepSeek-R1-0528, 深度求索(DeepSeek), 2025-09-05。
+
+\subsubsection*{问题 4 源代码}
+
+介绍:该代码由 Python 3.12 编写,实现问题 4 的【方法名】模型构建、训练与求解。
+
+\begin{lstlisting}[language=Python,caption={问题 4 主求解代码}]
+# -*- coding: utf-8 -*-
+"""
+问题 4 主求解代码
+方法:【主方法】
+"""
+import numpy as np
+import pandas as pd
+
+def main():
+    # 读取数据
+    data = pd.read_csv("../求解/预处理数据.csv")
+    # TODO: 根据具体问题实现
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\noindent\textbf{该部分代码使用 AI 工具:}DeepSeek, DeepSeek-R1-0528, 深度求索(DeepSeek), 2025-09-05。
+
+\subsection*{附录 3\quad 其他}
+
+% 除了支撑材料的文件列表和源程序代码外,附录中还可以包括下面内容:
+%   - 某一问题的详细证明或求解过程
+%   - 自己在网上找到的数据
+%   - 比较大的流程图
+%   - 较繁杂的图表或计算结果
+
+\begin{itemize}[itemindent=2em]
+  \item \textbf{详细证明或求解过程:}【如某一问题的详细推导、较繁琐的中间步骤等】。
+  \item \textbf{原始数据:}【在网上找到或第三方提供的原始数据】。
+  \item \textbf{较大流程图:}【篇幅较大、不便放在正文中的详细流程图】。
+  \item \textbf{较繁杂的图表或计算结果:}【如敏感性分析的详细数据表、参数扫描结果等】。
+\end{itemize}
+
+\subsection*{支撑材料说明}
+
+\textbf{本论文提供了支撑材料。}支撑材料内容包括:原始数据附件、问题求解完整源程序、问题求解结果 CSV、中间过程图(PNG)与 AI 工具使用详情(PDF)。全部支撑材料文件应使用 WinRAR 或类似软件压缩为一个文件(后缀为 RAR 或 ZIP,大小不超过 20MB),与论文电子版(PDF)分开提交。承诺书和编号专用页不要放在支撑材料中。所有文件中不能有显示参赛者身份和所在学校及赛区的信息。
+
+\subsection*{运行环境}
 
 本文的建模和可视化工作基于以下环境完成:
 
-\begin{itemize}
+\begin{itemize}[itemindent=2em]
   \item Python 3.12
   \item numpy, pandas, scikit-learn, scipy, matplotlib 等开源库
   \item LaTeX 编译环境(支持 ctex 宏包)

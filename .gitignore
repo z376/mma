@@ -43,3 +43,8 @@ __pycache__/
 ~$*
 *.tmp
 *.bak
+
+# 本地调试/OCR 临时文件
+论文/_tmp_*
+论文/*.aux
+论文/*.log
