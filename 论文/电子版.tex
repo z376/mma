@@ -1,0 +1,55 @@
+\PassOptionsToPackage{quiet}{xeCJK}
+%% 2026 规范第十条:电子版 = electronic,第一页直接是摘要页
+\documentclass[electronic,bwprint]{format}
+\usepackage{etoolbox}
+\usepackage{ctex}
+\BeforeBeginEnvironment{tabular}{\zihao{-5}}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{url}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\renewcommand{\textbf}[1]{{\song\bfseries #1}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  box/.style={rectangle, draw, minimum width=3.2cm, minimum height=0.9cm, align=center},
+  arrow/.style={thick, -{Stealth}}
+}
+
+\title{NIPT 时点选择与胎儿异常判定的数学建模}
+
+\begin{document}
+
+%% electronic 模式:跳过承诺书和编号页,第一页直接是标题 + 摘要
+\maketitle
+
+\input{0.摘要.tex}
+\thispagestyle{plain}
+
+\newpage
+\input{1.引言.tex}
+\input{2.总体分析.tex}
+\input{3.模型假设.tex}
+\input{4.符号说明.tex}
+\input{5.模型的建立与求解.tex}
+\input{6.模型检验.tex}
+\input{7.模型评价.tex}
+\input{8.模型改进推广.tex}
+
+%% 2026 AI 规定第 3 条: AI 工具使用声明放在参考文献之前
+\newpage
+\input{0.AI声明.tex}
+
+\newpage
+\input{9.参考文献.tex}
+
+\newpage
+\input{10.附录.tex}
+
+\end{document}

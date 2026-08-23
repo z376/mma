@@ -1,0 +1,77 @@
+
+\section*{附录}
+
+\subsubsection*{一、程序使用说明}
+
+\textbf{本论文使用了程序。}建模与求解所用到的全部源程序代码、关键中间图与结果数据详见下表。
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.40\textwidth}>{\centering\arraybackslash}p{0.56\textwidth}}
+  \caption{附件说明表}\\
+  \toprule
+  文件 & 说明 \\
+  \midrule
+  \endfirsthead
+  \caption{附件说明表(续)}\\
+  \toprule
+  文件 & 说明 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  求解/预处理数据.py & 通用预处理脚本 \\
+  求解/预处理数据.csv & 预处理后共享数据 \\
+  求解/问题1/问题1\_xxx.py & 问题 1 求解代码 \\
+  求解/问题1/图片/ & 问题 1 求解过程图 \\
+  求解/问题1/结果/ & 问题 1 求解结果 csv \\
+  求解/问题2/问题2\_xxx.py & 问题 2 求解代码 \\
+  求解/问题2/图片/ & 问题 2 求解过程图 \\
+  求解/问题2/结果/ & 问题 2 求解结果 csv \\
+  求解/问题3/问题3\_xxx.py & 问题 3 求解代码 \\
+  求解/问题3/图片/ & 问题 3 求解过程图 \\
+  求解/问题3/结果/ & 问题 3 求解结果 csv \\
+  求解/问题4/问题4\_xxx.py & 问题 4 求解代码 \\
+  求解/问题4/图片/ & 问题 4 求解过程图 \\
+  求解/问题4/结果/ & 问题 4 求解结果 csv \\
+\end{longtable}
+
+\noindent\textbf{运行说明:} 全部 Python 程序均基于 Python 3.12 编写,主要依赖 numpy、pandas、scikit-learn、scipy、matplotlib 等开源库。在已配置好依赖的环境中,直接运行各问题对应的 \texttt{问题X\_xxx.py} 即可复现论文中的全部图表与结果。预处理脚本 \texttt{预处理数据.py} 需在读取原始数据后首先执行,其输出 \texttt{预处理数据.csv} 供后续各问题共享。
+
+\subsubsection*{二、支撑材料说明}
+
+\textbf{本论文提供了支撑材料。}支撑材料内容包括:原始数据附件、问题求解完整源程序、问题求解结果 CSV、中间过程图(PNG)与 AI 工具使用详情(PDF)。具体清单如下表所示。
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.40\textwidth}>{\centering\arraybackslash}p{0.56\textwidth}}
+  \caption{支撑材料文件清单}\\
+  \toprule
+  文件 & 说明 \\
+  \midrule
+  \endfirsthead
+  \caption{支撑材料文件清单(续)}\\
+  \toprule
+  文件 & 说明 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  数据/附件.xlsx & 原始 NIPT 检测数据 \\
+  求解/预处理数据.py & 通用预处理脚本 \\
+  求解/预处理数据.csv & 预处理后共享数据 \\
+  求解/求解计划.md & 方案比选与详细求解计划 \\
+  求解/问题*/图片/*.png & 全部中间过程图 \\
+  求解/问题*/结果/*.csv & 全部结果 CSV \\
+  求解/问题*/问题*\_*.py & 全部源程序 \\
+  论文/AI工具使用详情.pdf & AI 工具使用详情 \\
+\end{longtable}
+
+\noindent\textbf{提交方式:} 全部支撑材料文件应使用 WinRAR 或类似软件压缩为一个文件(后缀为 RAR 或 ZIP,大小不超过 20MB),与论文电子版(PDF)分开提交。承诺书和编号专用页不要放在支撑材料中。所有文件中不能有显示参赛者身份和所在学校及赛区的信息。
+
+\subsubsection*{三、运行环境}
+
+本文的建模和可视化工作基于以下环境完成:
+
+\begin{itemize}
+  \item Python 3.12
+  \item numpy, pandas, scikit-learn, scipy, matplotlib 等开源库
+  \item LaTeX 编译环境(支持 ctex 宏包)
+  \item xelatex 编译器(必需,format.cls 依赖)
+\end{itemize}

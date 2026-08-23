@@ -1,0 +1,66 @@
+
+\subsubsection{具体分析}
+
+问题X是【问题类型:优化/评价/预测/分类/机理】问题,要求【具体求解目标】。
+
+本问采用【主要方法】作为主体方法,辅以【对比方法】进行交叉验证。具体地,首先对【数据/对象】进行预处理,然后【建模步骤1】,接着【建模步骤2】,最后【求解与验证】。
+
+具体分析流程如图\ref{fig:analysis1_flow}所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \begin{tikzpicture}[x=1cm, y=0.7cm]
+      \node[box] (n11) at (0, 0) {数据预处理};
+      \node[box] (n12) at (5, 0) {【步骤1】};
+      \node[box] (n13) at (10, 0) {【步骤2】};
+      \node[box] (n22) at (5, -3) {【对比方法】};
+      \node[box] (n21) at (0, -3) {主体方法};
+      \node[box] (n23) at (10, -3) {【验证】};
+      \node[box] (n31) at (0, -6) {结果分析};
+      \node[box] (n32) at (5, -6) {灵敏度};
+      \node[box] (n33) at (10, -6) {结论};
+      \draw[arrow] (n11) -- (n12);
+      \draw[arrow] (n12) -- (n13);
+      \draw[arrow] (n13) -- ++(0,-1.0) -| (n23);
+      \draw[arrow] (n23) -- (n22);
+      \draw[arrow] (n22) -- (n21);
+      \draw[arrow] (n21) -- (n31);
+      \draw[arrow] (n31) -- (n32);
+      \draw[arrow] (n32) -- (n33);
+    \end{tikzpicture}
+    \caption{问题X分析流程图}
+    \label{fig:analysis1_flow}
+  \end{center}
+\end{figure}
+
+\subsubsection{模型准备}
+
+在数据预处理的基础上,选取【响应变量】,自变量包括【因素1、因素2、...】。对所有数值变量进行标准化处理:
+\begin{equation}
+x'_j = \frac{x_j - \bar{x}_j}{s_j}
+\end{equation}
+其中,$\bar{x}_j$ 和 $s_j$ 分别为第 $j$ 个变量的样本均值和标准差。
+
+该问题本质上是一个【问题类型】问题。常用的【方法类别】包括【方法A】、【方法B】和【方法C】。本节从【维度1】、【维度2】和【维度3】三方面进行评估。
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}}
+  \caption{【方法类别】对比}\\
+  \toprule
+  方法 & 【维度1】 & 【维度2】 & 【维度3】 & 【维度4】 \\
+  \midrule
+  \endfirsthead
+  \caption{【方法类别】对比(续)}\\
+  \toprule
+  方法 & 【维度1】 & 【维度2】 & 【维度3】 & 【维度4】 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  方法A & 【评级】 & 【评级】 & 【评级】 & 【评级】 \\
+  方法B & 【评级】 & 【评级】 & 【评级】 & 【评级】 \\
+  方法C & 【评级】 & 【评级】 & 【评级】 & 【评级】 \\
+\end{longtable}
+
+通过对比可以看出,【方法A】在【某维度】方面表现优异,【方法C】在【某维度】独树一帜。综合考量,本文采用【选定方法组合】的策略,【说明理由】。
+
+综上所述,本节完成了数据预处理和分析方法选型,接下来将进行【下一步内容】。

@@ -1,0 +1,196 @@
+---
+name: mma
+description: |
+  数学建模竞赛端到端 agent skill —— 自用版. Use this skill when the user says
+  "开始建模"、"求解数模题"、"做这道数模题"、"生成建模论文"、"出论文 PDF"、
+  "国赛/美赛/MCM/ICM/CUMCM 求解" or pastes a math modeling problem and asks
+  to solve it. Triggers on phrases like "出论文"、"跑代码写论文"、"帮我做这道
+  数模题"、"完整解题"。
+
+  6 阶段工作流 + 4 角色分工(建模手/代码手/论文手/验收手)。LaTeX 模板已对齐
+  **2026 年全国大学生数学建模竞赛论文格式规范** + **AI 工具使用规定**(2026 试行):
+  承诺书 + 编号专用页(纸质版) / 跳过(电子版) / AI 工具使用声明(在参考文献前)
+  / 附录含程序使用说明 + 支撑材料说明。
+
+  Do NOT use for: general data analysis, one-off Python scripts, or research
+  questions that don't lead to a 论文.pdf deliverable.
+metadata:
+  version: "2.1"  # 加《参赛规则》合规说明
+  category: competition-workflow
+  scope: user
+  spec:
+    paper: 2026 年《全国大学生数学建模竞赛论文格式规范》
+    ai: 2026 年《全国大学生数学建模竞赛人工智能工具使用规定》(试行)
+    rules: 2026 年《全国大学生数学建模竞赛参赛规则》(修订稿)
+  extends:
+    - workflow: references/workflow.md
+    - paper-spec: references/paper-spec.md
+    - role-prompts: references/role-prompts.md
+    - decision-tree: references/model-decision-tree.md
+    - code-template: references/code-template.py
+    - eval-checklist: references/eval-checklist.md
+    - ai-declaration-template: 论文/0.AI声明.tex
+    - ai-detail-template: references/AI工具使用详情-template.md
+  related-skills:
+    - bzd-modeling-ideas: Stage 2 已升级到 bzd 的 8 段结构(整题主线 + 跨问题联动链)
+    - scipilot-figure-skill: 代码手 Stage 3 绘图原则已集成(15 条避坑 + setup_style 配环境)
+---
+
+# Math Modeling Agent (mma)
+
+数学建模竞赛端到端解题 + 论文写作 agent。自用版,设计目标:
+**跑出来能交、能得分的论文。**
+
+## 4 个角色(内部分工)
+
+mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执行,
+角色 prompt 模板见 `references/role-prompts.md`:
+
+| 角色 | 职责 | 触发阶段 |
+|------|------|---------|
+| **建模手** | 读题、问题分类、模型比选、出求解计划 | Stage 1-2 |
+| **代码手** | 实现求解、画图、灵敏度分析 | Stage 3 |
+| **论文手** | LaTeX 写作、严格遵守硬规则 | Stage 4 |
+| **验收手** | 编译验证、数值一致性、文本泄漏 | Stage 5-6 |
+
+这样分的好处:每阶段 prompt 边界清晰,失败时容易定位是哪个角色没做好。
+
+## 6 阶段流程
+
+详细步骤见 `references/workflow.md`。
+
+| Stage | 角色 | 关键产物 | 退出条件 |
+|-------|------|---------|---------|
+| 1. 读题 | 建模手 | 问题列表 N、数据概览 | 列出 N 个问题+数据 shape |
+| 2. 建模 | 建模手 | **8 段建模思路**(bzd 风格) → 用户拍板 → 求解计划 | 建模思路.md + 求解计划.md + 用户确认 |
+| 3. 求解 | 代码手 | 每个问题一个 py + 4-6 张图 + 结果 csv | 所有 py 运行无错 + 图够数 |
+| 4. 写作 | 论文手 | 10 章 LaTeX + 公式 + 流程图 | 全部 .tex 写完 |
+| 5. 验收 | 验收手 | 编译通过 + 数值一致 + 硬规则全过 | eval-checklist 全过 |
+| 6. 出 PDF | 验收手 | `论文/论文.pdf` | PDF 存在且能打开 |
+
+## 触发
+
+用户说以下任一即启动:
+- "开始建模"/"求解数模题"/"做这道数模题"/"出论文"
+- "生成建模论文"/"出论文 PDF"
+- "国赛/美赛/MCM/ICM/CUMCM 求解"
+- 粘贴赛题 PDF + 让我做
+
+## 必要输入(启动前确认)
+
+1. `题目/` 目录有 PDF/DOCX
+2. `数据/` 目录有 xlsx/csv(如果有附件)
+3. 建模类型(优化/评价/预测/分类/机理)用户是否已知
+
+**缺任一就停下等用户补齐**,不要瞎猜。
+
+## 关键引用
+
+按需读:
+
+- **完整工作流** → `references/workflow.md`
+- **论文硬规则** → `references/paper-spec.md`
+- **角色 prompt 模板** → `references/role-prompts.md`
+- **模型选择决策树** → `references/model-decision-tree.md`
+- **验收清单** → `references/eval-checklist.md`(已含 2026 规范检查项)
+- **求解代码模板** → `references/code-template.py`
+- **AI 工具使用声明模板** → `论文/0.AI声明.tex`(放在 9.参考文献.tex 之前)
+- **AI 工具使用详情模板** → `references/AI工具使用详情-template.md`(放在 支撑材料)
+
+## 目录约定(项目工作区)
+
+每个赛题建一个工作区,根目录结构:
+
+```
+<工作区>/
+├── 题目/                    # 赛题 PDF/DOCX
+├── 数据/                    # 附件 xlsx/csv
+├── 求解/
+│   ├── 求解计划.md
+│   ├── 预处理数据.csv       # 问题1 输出,后续共用
+│   ├── 预处理数据.py
+│   └── 问题X/
+│       ├── 问题X_xxx.py     # 中文命名
+│       ├── 图片/
+│       └── 结果/
+├── 论文/                    # 从 mma skill 论文/ 模板复制
+│   ├── 论文.tex              # 纸质版入口(含承诺书+编号页)
+│   ├── 电子版.tex            # 电子版入口(跳过前两页)
+│   ├── format.cls
+│   ├── 0-10 章.tex
+│   ├── 0.AI声明.tex          # AI 工具使用声明(放 9.参考文献.tex 之前)
+│   └── fonts/                # 已自带,无需配置
+└── 支撑材料/                 # 单独提交的压缩包(2026 规范第十一条)
+    ├── AI工具使用详情.pdf    # 必须(2026 AI 规定第 4 条)
+    ├── 附件.xlsx
+    ├── 求解/                # 全部源代码
+    └── 论文/AI工具使用详情.pdf
+```
+
+**LaTeX 编译必须用 xelatex**(format.cls 依赖 ctex + SourceHanSerif)。
+
+**两套编译配置**(2026 规范第十条):
+- `xelatex 论文.tex` → `论文.pdf`(纸质版提交,含承诺书+编号页)
+- `xelatex 电子版.tex` → `电子版.pdf`(电子版提交,跳过承诺书+编号页)
+
+## Windows (win32) 平台注意
+
+- LaTeX:`xelatex -interaction=nonstopmode 论文.tex`
+- Python:`python`(不是 `python3`)
+- 字体:`论文/fonts/SourceHanSerifCN-*.otf`(已自带)
+- 路径分隔符:`\`(Windows),LaTeX 用 `/`(跨平台)
+- 文件校验:`Test-Path 论文/论文.pdf`
+
+## 与 li-mrite / li-mtrie 的关系
+
+mma 继承自 li-mrite(早期 2024 模板,硬规则一致),已升级到 **2026 全国数模规范**:
+
+- ✅ 显式 4 角色分工(prompt 层面,不是进程层面)
+- ✅ 独立"验收"阶段 + 结构化验收清单
+- ✅ 模型选择决策树(快速匹配候选模型)
+- ✅ **2026 规范升级**:format.cls 来自 li-mtrie（2026），支持 `withpreface` / `electronic` 双模式
+- ✅ **2026 规范第 3 条**:AI 工具使用声明模板(`论文/0.AI声明.tex`)
+- ✅ **2026 规范第 4 条**:AI 工具使用详情模板(`references/AI工具使用详情-template.md`)
+- ✅ **2026 规范第 5/11 条**:附录含「程序使用说明」+「支撑材料说明」两段固定说明
+- ⏸ 暂不引入:HIL、RAG、多模型 fallback(自用不需要)
+- ⏸ 暂不引入:Typst 替代 LaTeX(自用,稳优先)
+
+## 失败处理(常见)
+
+| 情况 | 处理 |
+|------|------|
+| 数据缺失>20% | KNN 插补或删除,不静默丢 |
+| 模型过拟合 | 降低 max_depth/增加正则化 |
+| 预测值异常 | 检查数据泄露 |
+| 交叉验证方差大 | 增加折数或重复 CV |
+| xelatex Error | grep 看具体错;连续 2 次失败切换策略 |
+| Overfull/Underfull | 调列宽/换行;2 次修不好允许 `\\newline` |
+| py 脚本报错 | 修 → 重跑,通过再下一问 |
+
+## Examples
+
+**Input**: 用户说"开始建模",工作区已放 2024 国赛 B 题 PDF + 附件 xlsx。
+
+**Output**: 启动 Stage 1 → 读题读数据 → 打印"识别到 4 个问题..." → 列出每问
+候选模型对比表 → 等待用户选 → 按选定方案求解 → 写论文 → 验收 → 出 PDF。
+
+**Input**: 用户说"直接生成论文"(题和数据已就位,求解已完成)。
+
+**Output**: 跳到 Stage 4,按 `references/paper-spec.md` 10 章规范逐章写 LaTeX →
+Stage 5 验收 → Stage 6 出 PDF。
+
+## ⚠️ 参赛规则合规(2026 修订稿)
+
+mma 同样**仅用于赛后整理论文**,不参与竞赛期间的赛题解答。用户在竞赛期间必须遵守:
+
+| 条款 | 含义 |
+|------|------|
+| 第 3 条 | 指导教师竞赛期间不得指导(包括解释赛题/选题/解题建议/参考资料/修改论文) |
+| 第 4 条 | 引用必须规范,**不得大篇幅照抄** |
+| 第 5 条 | 严禁与队外交流;**不得在贴吧/QQ群/微信群/知乎/小红书/CSDN/GitHub 等平台讨论赛题** |
+| 第 6 条 | AI 工具可用作辅助,但**参赛队对作品负全部责任** |
+
+**违规后果**:取消评奖 + 指导教师两年禁赛 + 通报批评 + 赛区缩减送全国评阅论文数量。
+
+完整 4 角色 prompt + Stage 5 验收清单(已含 F.4 参赛规则检查项)见 
+eferences/。

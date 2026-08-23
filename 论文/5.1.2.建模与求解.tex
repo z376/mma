@@ -1,0 +1,58 @@
+
+\subsubsection{模型建立}
+
+设 $Y_i$ 为第 $i$ 个【观测对象】的【响应变量】,自变量向量 $X_i = (X_{i1}, X_{i2}, \ldots, X_{ip})^T$ 分别对应【因素说明】。建立【模型类型】:
+\begin{equation}
+Y_i = f(X_i; \theta) + \varepsilon_i
+\end{equation}
+其中,$\theta$ 为待估参数向量,$\varepsilon_i$ 为随机误差项。
+
+为便于比较各因素的影响程度,对自变量进行标准化处理后拟合模型。对各参数采用最大似然估计或最小二乘法,通过适当的统计检验判断其显著性。
+
+最后,采用【对比方法】作为补充,提供【特征重要性 / 非线性关系】等信息。
+
+\subsubsection{模型求解}
+
+基于【样本数】个【样本说明】,采用上述方法进行求解,关键结果如下。
+
+【简要描述主要发现】。单变量分析表明,【因素1】与响应变量呈显著【正/负】相关($r = $ 【值】, $p = $ 【值】)。
+
+【主方法】结果显示,【关键指标】达到【值】,【次要指标】为【值】。各因素对响应变量的影响系数如图\ref{fig:q1_coef}所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{../求解/问题1/图片/4.回归系数.png}
+    \caption{【主方法】系数}
+    \label{fig:q1_coef}
+  \end{center}
+\end{figure}
+
+【对比方法】的特征重要性排序为:【因素1】 【值】,【因素2】 【值】,【因素3】 【值】。前两个因素在两种方法中均排名前二,验证了它们对【响应变量】的影响,如图\ref{fig:q1_rfimp}所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{../求解/问题1/图片/5.随机森林特征重要性.png}
+    \caption{【对比方法】特征重要性}
+    \label{fig:q1_rfimp}
+  \end{center}
+\end{figure}
+
+5 折交叉验证结果显示,【指标】为【值 ± 标准差】,【进一步说明】。
+
+预测值与实际值的散点图如图\ref{fig:q1_pred}所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{../求解/问题1/图片/6.预测vs实际.png}
+    \caption{预测值与实际值散点图}
+    \label{fig:q1_pred}
+  \end{center}
+\end{figure}
+
+\subsubsection{结果分析}
+
+研究结果表明,【关键结论】。这一发现与【领域直觉/理论】一致,【进一步解释】。
+
+【进一步说明】。然而,【简单方法】对【响应变量】变异的解释力有限(【指标】较低),提示实际关系中存在复杂的非线性成分和未观测的混杂因素。
+
+综上所述,本问建立了【响应变量】与【自变量】的【模型类型】关系模型,识别出【主要因素】是主要影响因素,模型【整体显著/解释力有限】,需要更复杂的建模方法以提高拟合优度。
