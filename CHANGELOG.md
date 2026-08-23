@@ -43,8 +43,10 @@
 ### 新增
 
 - `references/scripts/check_input.py` — 启动前自动检查 题目/数据/ 是否就位
-- `references/scripts/build.ps1` — 一键编译论文.tex(纸质版)+ 电子版.tex(电子版)
+- `references/scripts/build.ps1` — 一键编译论文.tex(纸质版)+ 电子版.tex(电子版) + AI工具使用详情.tex
+- `references/scripts/build_ai_detail.ps1` — 单独编译 AI 工具使用详情 PDF(放 支撑材料/)
 - `references/scripts/auto_verify.py` — 自动跑 eval-checklist 机械部分(A 编译 + C 硬规则 + D 完整性 + F2.1 AI 声明)
+- `论文/AI工具使用详情-template.tex` — AI 详情 LaTeX 模板(对应 .md 版,直接 xelatex 编译,无需 pandoc)
 - `CHANGELOG.md` — 本文件
 
 ### 修改

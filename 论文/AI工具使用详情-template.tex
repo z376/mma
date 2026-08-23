@@ -1,0 +1,191 @@
+% AI 工具使用详情模板
+% 对应 references/AI工具使用详情-template.md
+% 编译:xelatex AI工具使用详情-template.tex(在 论文/ 目录)
+% 输出:AI工具使用详情.pdf(放 支撑材料/ 压缩包内,2026 规定第 4 条)
+%
+% 用法:
+%   1. 复制本文件为 AI工具使用详情.tex
+%   2. 填写【】占位符(每个章节都要填,无内容写"无")
+%   3. 跑 build.ps1(会自动编译并复制到 支撑材料/AI工具使用详情.pdf)
+\documentclass[a4paper,12pt]{article}
+
+% ===== 宏包 =====
+\usepackage[UTF8]{ctex}
+\usepackage{geometry}
+\geometry{top=25mm,bottom=25mm,left=25mm,right=25mm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks,allcolors=black,breaklinks=true}
+
+% ===== 字体(只定义 song 族;中文段落用 \song 命令局部应用) =====
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setCJKfamilyfont{song}[
+  Path = ./fonts/,
+  UprightFont = SourceHanSerifCN-Regular.otf,
+  BoldFont = SourceHanSerifCN-Bold.otf
+]{SourceHanSerifCN}
+\newcommand{\song}{\CJKfamily{song}}
+
+% ===== 行距 =====
+\renewcommand{\baselinestretch}{1.5}
+
+% ===== 标题格式 =====
+\usepackage{titlesec}
+\titleformat{\section}{\centering\Large\bfseries\song}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\song}{\thesubsection}{1em}{}
+
+% ===== 列表间距 =====
+\setlist{topsep=0.3em,itemsep=0.1em,parsep=0pt,leftmargin=1.5em}
+
+% ===== 标题与作者 =====
+\title{\song\bfseries\zihao{2} AI 工具使用详情}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\vspace{-1em}
+\noindent\textbf{说明:}{\song 本文件依据《全国大学生数学建模竞赛人工智能工具使用规定》(2026 试行) 第 4 条编写。}
+提交前请填写全部内容,完成后将本 PDF 放入 \texttt{支撑材料/} 压缩包内,文件名必须为 \texttt{AI工具使用详情.pdf}。
+
+\vspace{1em}
+
+% ========== 一、所使用的 AI 工具 ==========
+\section*{一、所使用的 AI 工具}
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.30\textwidth}>{\centering\arraybackslash}p{0.30\textwidth}>{\centering\arraybackslash}p{0.30\textwidth}}
+  \toprule
+  工具名称 & 版本/型号 & 用途分类 \\
+  \midrule
+  \endfirsthead
+  \toprule
+  工具名称 & 版本/型号 & 用途分类 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  (如:DeepSeek)  & (如:DeepSeek-R1-0528)  & (如:语言润色 / 代码调试 / 模型分析) \\
+  (如:ChatGPT)   & (如:GPT-4o)            & ... \\
+  (如:Github Copilot) & (如:X.Y.Z)      & ... \\
+\end{longtable}
+
+% ========== 二、具体使用目的与环节 ==========
+\section*{二、具体使用目的与环节}
+
+按问题 $\times$ 步骤二维表格填写:
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.10\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.32\textwidth}>{\centering\arraybackslash}p{0.10\textwidth}}
+  \toprule
+  题号 & 步骤 & AI 用途 & 关键 prompt 摘要 & 是否采纳 \\
+  \midrule
+  \endfirsthead
+  \toprule
+  题号 & 步骤 & AI 用途 & 关键 prompt 摘要 & 是否采纳 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  问题 1 & 数据预处理 & ... & ``...'' & 采纳/部分/未 \\
+  问题 1 & 模型构建   & ... & ``...'' & ... \\
+  问题 1 & 灵敏度分析 & ... & ``...'' & ... \\
+  问题 2 & ...        & ... & ``...'' & ... \\
+\end{longtable}
+
+% ========== 三、主要提示方式与使用过程 ==========
+\section*{三、主要提示方式与使用过程}
+
+按时间顺序记录每次关键交互(\textbf{典型 3-5 个示例即可,每例 $\le$ 200 字}):
+
+\subsection*{示例 1:问题 X 第 Y 步}
+
+\begin{itemize}[itemindent=2em]
+  \item \textbf{时段:}2026-XX-XX HH:MM $\sim$ HH:MM(约 X 分钟)
+  \item \textbf{工具:}(工具名 + 版本)
+  \item \textbf{输入 prompt(核心部分):}...
+  \item \textbf{AI 输出摘要:}...
+  \item \textbf{人工动作:}采纳 / 修改 / 弃用,原因:...
+\end{itemize}
+
+\subsection*{示例 2:问题 X 第 Y 步}
+
+\begin{itemize}[itemindent=2em]
+  \item \textbf{时段:}...
+  \item \textbf{工具:}...
+  \item \textbf{输入 prompt(核心部分):}...
+  \item \textbf{AI 输出摘要:}...
+  \item \textbf{人工动作:}...
+\end{itemize}
+
+\subsection*{示例 3:问题 X 第 Y 步}
+
+\begin{itemize}[itemindent=2em]
+  \item \textbf{时段:}...
+  \item \textbf{工具:}...
+  \item \textbf{输入 prompt(核心部分):}...
+  \item \textbf{AI 输出摘要:}...
+  \item \textbf{人工动作:}...
+\end{itemize}
+
+% ========== 四、对 AI 输出的采纳、人工修改和核验情况 ==========
+\section*{四、对 AI 输出的采纳、人工修改和核验情况}
+
+按问题分述。\textbf{语言润色不用展开},但其他环节(建模、求解、写作、绘图)必须说明:
+
+\subsection*{问题 1}
+
+\begin{itemize}[itemindent=2em]
+  \item \textbf{采纳:}...(说明采纳了什么、为什么采纳)
+  \item \textbf{人工修改:}...(修改了哪些、为什么)
+  \item \textbf{核验:}...(怎么核验的、结果是否一致,如运行了哪些测试、对比了哪些 baseline)
+\end{itemize}
+
+\subsection*{问题 2}
+
+\begin{itemize}[itemindent=2em]
+  \item \textbf{采纳:}...
+  \item \textbf{人工修改:}...
+  \item \textbf{核验:}...
+\end{itemize}
+
+\subsection*{问题 3}
+
+\begin{itemize}[itemindent=2em]
+  \item \textbf{采纳:}...
+  \item \textbf{人工修改:}...
+  \item \textbf{核验:}...
+\end{itemize}
+
+% ========== 五、声明 ==========
+\section*{五、声明}
+
+\noindent {\song 本参赛队确认上述内容真实、准确,并承诺对 AI 参与完成的内容已逐项人工审查与核实。核心建模与分析由本参赛队主导完成,所有最终结论由参赛队独立负责。}
+
+\vspace{2em}
+
+\noindent\textbf{赛题名称:}\underline{\hspace{6em}【填写赛题名】\hspace{6em}}
+
+\noindent\textbf{参赛队编号:}\underline{\hspace{6em}【填写参赛队编号】\hspace{6em}}
+
+\noindent\textbf{填表日期:}\underline{\hspace{2em}2026\hspace{2em}年\hspace{2em}09\hspace{2em}月\hspace{2em}05\hspace{2em}日}
+
+\vspace{1em}
+
+\noindent\textbf{填写说明:}
+\begin{enumerate}[itemindent=2em]
+  \item 第 1-4 节必须填写,无内容填``无''。
+  \item 第 3 节至少 3 个典型交互示例(每例 $\le$ 200 字)。
+  \item 第 4 节要能让人看出``不是把 AI 直接抄进论文''——重点是核验过程。
+  \item 故意隐瞒或虚假声明 $\rightarrow$ 取消评奖资格(2026 规定第 5 条)。
+\end{enumerate}
+
+\end{document}

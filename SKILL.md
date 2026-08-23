@@ -30,7 +30,8 @@ metadata:
     - code-template: references/code-template.py
     - eval-checklist: references/eval-checklist.md
     - ai-declaration-template: 论文/0.AI声明.tex
-    - ai-detail-template: references/AI工具使用详情-template.md
+    - ai-detail-md-template: references/AI工具使用详情-template.md
+    - ai-detail-tex-template: 论文/AI工具使用详情-template.tex
     - scripts: references/scripts/
   related-skills:
     - bzd-modeling-ideas: Stage 2 已升级到 bzd 的 8 段结构(整题主线 + 跨问题联动链)
@@ -163,8 +164,10 @@ mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执�
 - **验收清单** → `references/eval-checklist.md`(已含 2026 规范检查项)
 - **求解代码模板** → `references/code-template.py`
 - **AI 工具使用声明模板** → `论文/0.AI声明.tex`(放在 9.参考文献.tex 之前)
-- **AI 工具使用详情模板** → `references/AI工具使用详情-template.md`(放在 支撑材料)
-- **辅助脚本** → `references/scripts/`(check_input / build / auto_verify)
+- **AI 工具使用详情模板**(Markdown 版) → `references/AI工具使用详情-template.md`
+- **AI 工具使用详情模板**(LaTeX 版,直接编译) → `论文/AI工具使用详情-template.tex`
+- **AI 详情 PDF 编译脚本** → `references/scripts/build_ai_detail.ps1`(xelatex 编译,输出到 支撑材料/)
+- **辅助脚本** → `references/scripts/`(check_input / build / auto_verify / build_ai_detail)
 
 ---
 
@@ -204,8 +207,11 @@ mma 不真正启多进程,而是在每个阶段**以一个角色视角**去执�
 **两套编译配置**(2026 规范第十条):
 - `xelatex 论文.tex` → `论文.pdf`(纸质版提交,含承诺书+编号页)
 - `xelatex 电子版.tex` → `电子版.pdf`(电子版提交,跳过承诺书+编号页)
+- `xelatex AI工具使用详情.tex` → `AI工具使用详情.pdf`(放 支撑材料/,2026 AI 规定第 4 条)
 
-**自动编译**:跑 `references/scripts/build.ps1` 一键编译两份 PDF。
+**自动编译**:跑 `references/scripts/build.ps1` 一键编译**三份 PDF**(论文版 + 电子版 + AI 详情,如果 AI 详情 .tex 存在)。
+
+**AI 详情 PDF 单独编译**:`pwsh references/scripts/build_ai_detail.ps1 -WorkSpace <工作区>`。
 
 ---
 

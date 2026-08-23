@@ -48,3 +48,19 @@ __pycache__/
 论文/_tmp_*
 论文/*.aux
 论文/*.log
+
+# AI 详情:用户填的内容和编译产物不进 skill 仓库(用户应在自己题目工作区)
+# 模板 AI工具使用详情-template.tex 仍会进 skill 仓库
+论文/AI工具使用详情.tex
+论文/AI工具使用详情.pdf
+
+# 论文 PDF 编译产物(skill 仓库只保留 .tex 模板)
+论文/论文.pdf
+论文/电子版.pdf
+
+# 支撑材料目录(skill 仓库不包含,用户自己题目工作区)
+支撑材料/
+
+# 临时调试脚本(下划线开头)
+references/scripts/_*.ps1
+references/scripts/_*.py
