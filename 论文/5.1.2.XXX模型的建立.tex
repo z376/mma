@@ -1,0 +1,75 @@
+
+\subsubsection{XXX 模型的建立}
+
+% 针对问题 X,本节将从 XX 角度建立 XX 模型。具体过程如下。
+
+% === 具体分析 ===
+问题 X 是【问题类型:优化/评价/预测/分类/机理】问题,要求【具体求解目标】。
+
+本问采用【主要方法】作为主体方法,辅以【对比方法】进行交叉验证。具体地,首先对【数据/对象】进行预处理,然后【建模步骤 1】,接着【建模步骤 2】,最后【求解与验证】。
+
+具体分析流程如图~\ref{fig:q1_analysis_flow} 所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \begin{tikzpicture}[x=1cm, y=0.7cm]
+      \node[box] (n11) at (0, 0) {数据预处理};
+      \node[box] (n12) at (5, 0) {【步骤 1】};
+      \node[box] (n13) at (10, 0) {【步骤 2】};
+      \node[box] (n22) at (5, -3) {【对比方法】};
+      \node[box] (n21) at (0, -3) {主体方法};
+      \node[box] (n23) at (10, -3) {【验证】};
+      \node[box] (n31) at (0, -6) {结果分析};
+      \node[box] (n32) at (5, -6) {灵敏度};
+      \node[box] (n33) at (10, -6) {结论};
+      \draw[arrow] (n11) -- (n12);
+      \draw[arrow] (n12) -- (n13);
+      \draw[arrow] (n13) -- ++(0,-1.0) -| (n23);
+      \draw[arrow] (n23) -- (n22);
+      \draw[arrow] (n22) -- (n21);
+      \draw[arrow] (n21) -- (n31);
+      \draw[arrow] (n31) -- (n32);
+      \draw[arrow] (n32) -- (n33);
+    \end{tikzpicture}
+    \caption{问题 1 分析流程图}
+    \label{fig:q1_analysis_flow}
+  \end{center}
+\end{figure}
+
+% === 算法选择(对比表) ===
+该问题本质上是【问题类型】问题。常用的【方法类别】包括【方法 A】、【方法 B】和【方法 C】。本节从【维度 1】、【维度 2】、【维度 3】和【维度 4】四方面进行评估。
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}}
+  \caption{【方法类别】对比}\\
+  \toprule
+  方法 & 【维度 1】 & 【维度 2】 & 【维度 3】 & 【维度 4】 \\
+  \midrule
+  \endfirsthead
+  \caption{【方法类别】对比(续)}\\
+  \toprule
+  方法 & 【维度 1】 & 【维度 2】 & 【维度 3】 & 【维度 4】 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  方法 A & 【评级】 & 【评级】 & 【评级】 & 【评级】 \\
+  方法 B & 【评级】 & 【评级】 & 【评级】 & 【评级】 \\
+  方法 C & 【评级】 & 【评级】 & 【评级】 & 【评级】 \\
+\end{longtable}
+
+通过对比可以看出,【方法 A】在【某维度】方面表现优异,【方法 C】在【某维度】独树一帜。综合考量,本文采用【选定方法组合】的策略,【说明理由】。
+
+% === 模型建立(分步推导) ===
+\textbf{步骤 1:模型假设与变量定义。}设 $Y_i$ 为第 $i$ 个【观测对象】的【响应变量】,自变量向量 $X_i = (X_{i1}, X_{i2}, \ldots, X_{ip})^T$ 分别对应【因素说明】。
+
+\textbf{步骤 2:模型表达式建立。}建立【模型类型】:
+\begin{equation}
+Y_i = f(X_i; \theta) + \varepsilon_i \label{eq:model_q1}
+\end{equation}
+其中,$\theta$ 为待估参数向量,$\varepsilon_i$ 为随机误差项。
+
+\textbf{步骤 3:参数估计与显著性检验。}对各参数采用最大似然估计或最小二乘法,通过适当的统计检验判断其显著性。
+
+\textbf{步骤 4:对比方法补充。}采用【对比方法】作为补充,提供【特征重要性 / 非线性关系】等信息。
+
+综上所述,本节完成了【模型名称】的建立,接下来将基于此进行求解。

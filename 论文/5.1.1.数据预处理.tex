@@ -1,0 +1,61 @@
+
+\subsubsection{数据预处理}
+
+% 仅问题 1 需要写(数据预处理)。
+% 关键步骤:
+%   1. 原始数据来源、格式与问题(缺失值、量纲不统一、异常值)
+%   2. 数据理解与特征提取
+%   3. 预处理步骤(缺失值处理 -> 标准化 -> 特征衍生),含公式
+%   4. 预处理结果对比表(min/max/mean/std)
+%   5. 总结
+
+【数据来源与格式说明:原始数据来源、字段说明、规模】
+
+\begin{enumerate}[itemindent=2em]
+  \item \textbf{缺失值处理:}【方法:删除/均值填充/插值/模型预测】
+  \item \textbf{异常值处理:}【方法:3$\sigma$ 准则 / IQR / 箱线图】
+  \item \textbf{数据标准化:}采用 Z-score 标准化(式~\ref{eq:zscore})或 Min-Max 归一化(式~\ref{eq:minmax})。
+\end{enumerate}
+
+\begin{equation}
+x'_j = \frac{x_j - \bar{x}_j}{s_j} \quad \text{(Z-score 标准化)} \label{eq:zscore}
+\end{equation}
+
+\begin{equation}
+x'_j = \frac{x_j - x_{j,\min}}{x_{j,\max} - x_{j,\min}} \quad \text{(Min-Max 归一化)} \label{eq:minmax}
+\end{equation}
+
+% 处理后结果统计表(min/max/mean/std)
+预处理结果统计如下表所示:
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}>{\centering\arraybackslash}p{0.18\textwidth}}
+  \caption{预处理后数据统计}\\
+  \toprule
+  变量 & 均值 & 标准差 & 最小值 & 最大值 \\
+  \midrule
+  \endfirsthead
+  \caption{预处理后数据统计(续)}\\
+  \toprule
+  变量 & 均值 & 标准差 & 最小值 & 最大值 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  【变量1】& 【值】& 【值】& 【值】& 【值】\\
+  【变量2】& 【值】& 【值】& 【值】& 【值】\\
+  【变量3】& 【值】& 【值】& 【值】& 【值】\\
+  【变量4】& 【值】& 【值】& 【值】& 【值】\\
+\end{longtable}
+
+经过上述预处理,数据质量得到有效改善,为后续建模提供了可靠的输入。
+
+% 图 1 【预处理前后对比图】(可选)
+% \begin{figure}[ht]
+%   \begin{center}
+%     \includegraphics[width=0.85\textwidth]{../求解/问题1/图片/1.数据预处理对比.png}
+%     \caption{预处理前后数据对比}
+%     \label{fig:q1_preprocess}
+%   \end{center}
+% \end{figure}
+
+综上所述,本节完成了数据预处理,经过清洗和标准化后的数据将作为后续建模的输入。

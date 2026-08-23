@@ -163,13 +163,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \geometry{top=25mm,bottom=25mm,left=25mm,right=25mm}
 %% 2026 规范第一条：上下左右各留出至少 2.5 厘米 ✓（25mm = 2.5cm，刚好"至少"）
 %% 2026 规范第三条：摘要页开始编页码，页码位于页脚中部（LaTeX 默认 plain 样式：底部居中 ✓）
-\renewcommand*{\baselinestretch}{1.38}
-% 修改tabular 环境, 设置表格中的行间距为正文行间距.
+\renewcommand*{\baselinestretch}{1.5}
+% 修改 tabular 环境, 设置表格中的行间距为正文行间距.
 \let\mcm@oldtabular\tabular
 \let\mcm@endoldtabular\endtabular
 \renewenvironment{tabular}%
 	{\bgroup%
-	\renewcommand{\arraystretch}{1.38}%
+	\renewcommand{\arraystretch}{1.5}%
 	\mcm@oldtabular}%
 	{\mcm@endoldtabular\egroup}
 % 每行缩进两个汉字

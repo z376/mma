@@ -1,0 +1,67 @@
+
+\subsubsection{XXX 模型的求解}
+
+% 基于上述模型,本节进行求解。
+% 关键内容:
+%   1. 求解结果表(主方法 + 对比方法关键指标)
+%   2. 求解结果图(系数图、特征重要性图、预测 vs 实际图)
+%   3. 交叉验证结果
+%   4. 简要文字总结
+
+基于【样本数】个【样本说明】,采用上述方法进行求解,关键结果如下。
+
+【简要描述主要发现】。单变量分析表明,【因素 1】与响应变量呈显著【正/负】相关($r = $ 【值】, $p = $ 【值】)。
+
+【主方法】结果显示,【关键指标】达到【值】,【次要指标】为【值】。各因素对响应变量的影响系数如图~\ref{fig:q1_coef} 所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{../求解/问题1/图片/4.回归系数.png}
+    \caption{【主方法】系数}
+    \label{fig:q1_coef}
+  \end{center}
+\end{figure}
+
+【对比方法】的特征重要性排序为:【因素 1】【值】,【因素 2】【值】,【因素 3】【值】。前两个因素在两种方法中均排名前二,验证了它们对【响应变量】的影响,如图~\ref{fig:q1_rfimp} 所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{../求解/问题1/图片/5.随机森林特征重要性.png}
+    \caption{【对比方法】特征重要性}
+    \label{fig:q1_rfimp}
+  \end{center}
+\end{figure}
+
+5 折交叉验证结果显示,【指标】为【值 $\pm$ 标准差】,【进一步说明】。
+
+预测值与实际值的散点图如图~\ref{fig:q1_pred} 所示。
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{../求解/问题1/图片/6.预测vs实际.png}
+    \caption{预测值与实际值散点图}
+    \label{fig:q1_pred}
+  \end{center}
+\end{figure}
+
+% 关键结果表
+\begin{longtable}{>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}>{\centering\arraybackslash}p{0.20\textwidth}}
+  \caption{问题 1 关键求解结果}\\
+  \toprule
+  指标 & 【主方法】 & 【对比方法 1】 & 【对比方法 2】 \\
+  \midrule
+  \endfirsthead
+  \caption{问题 1 关键求解结果(续)}\\
+  \toprule
+  指标 & 【主方法】 & 【对比方法 1】 & 【对比方法 2】 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  $R^2$ & 【值】 & 【值】 & 【值】 \\
+  RMSE & 【值】 & 【值】 & 【值】 \\
+  MAE  & 【值】 & 【值】 & 【值】 \\
+  MAPE(\%) & 【值】 & 【值】 & 【值】 \\
+\end{longtable}
+
+综上,【主方法】在【某指标】上表现优异,验证了模型的有效性,接下来将对其进行检验。
