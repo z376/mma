@@ -64,3 +64,8 @@ __pycache__/
 # 临时调试脚本(下划线开头)
 references/scripts/_*.ps1
 references/scripts/_*.py
+_*.py
+_*.md
+_*.tex
+_problem_text.md
+论文/_tmp_pages

@@ -13,6 +13,12 @@ import sys
 import os
 from pathlib import Path
 
+# Windows GBK stdout 不支持 emoji,强制 UTF-8 输出
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 
 def main() -> int:
     if len(sys.argv) < 2:
