@@ -1,5 +1,21 @@
 # mma Skill 更新日志
 
+## v3.1(2026-08-25) — 写作流程审计 + 瘦身
+
+按 writing-for-agents skill 审计后精简:
+
+- **description 触发词压缩**:`SKILL.md` 触发词从 8-9 个压到 5 branch(完整流程/出 PDF/局部修改/快速模式/粘贴赛题)
+- **章节命名单一来源**:新建 `references/chapter-structure.md`,`SKILL.md` / `workflow.md` / `role-prompts.md` / `eval-checklist.md` 全部改为引用,不再各自复制
+- **SKILL.md 瘦身**:从 211 行 → ~80 行
+- **Stage 4 自检明确化**:`workflow.md` 改为指向 `eval-checklist.md` D 节(完整性)+ 跑 `auto_verify.py` 自动机械检查
+- **重复的"禁止事项"列表**:保留 `workflow.md` 速查表,详细规范指向 `paper-spec.md`
+
+未改:
+- `paper-spec.md` 仍是最详细的论文写作规范(单独存在,不重复)
+- `references/scripts/auto_verify.py` 内置 11 个 .tex 列表(机器检查需要),与 chapter-structure.md 同步维护
+
+---
+
 ## v3.0(2026-08-23) — 流程升级 + 2026 Word 模板对齐
 
 ### 重大变化

@@ -14,6 +14,12 @@ import subprocess
 from pathlib import Path
 from dataclasses import dataclass, field
 
+# Windows GBK stdout 不支持 emoji,强制 UTF-8 输出
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 
 @dataclass
 class CheckResult:
@@ -60,6 +66,8 @@ def check_compile(workspace: Path, report: Report):
                     ["xelatex", "-interaction=nonstopmode", tex_name],
                     cwd=paper_dir,
                     capture_output=True,
+                    encoding="utf-8",
+                    errors="replace",
                     text=True,
                     timeout=120,
                 )
