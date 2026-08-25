@@ -27,6 +27,7 @@ metadata:
     - decision-tree: references/model-decision-tree.md
     - code-template: references/code-template.py
     - data-utils: references/scripts/data_utils.py        # 跨题通用数据工具(read_csv_safe 等)
+    - solve-plan: references/求解计划-template.md         # 求解计划模板(Stage 2 收尾)
     - eval-checklist: references/eval-checklist.md
     - ai-declaration-template: 论文/0.AI声明.tex
     - ai-detail-md-template: references/AI工具使用详情-template.md
@@ -118,6 +119,7 @@ ensure_utf8_stdout()
 - **论文详细规范** → `references/paper-spec.md`
 - **角色 prompt** → `references/role-prompts.md`
 - **模型决策树** → `references/model-decision-tree.md`
+- **求解计划模板**(Stage 2 收尾) → `references/求解计划-template.md`
 - **验收清单** → `references/eval-checklist.md`
 - **辅助脚本** → `references/scripts/`(check_input / build / build_ai_detail / auto_verify)
 - **数据工具** → `references/scripts/data_utils.py`(read_csv_safe / save_csv / ensure_utf8_stdout)
