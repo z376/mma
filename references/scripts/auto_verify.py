@@ -8,11 +8,22 @@
     1 = 有 FAIL
     2 = 工作区或论文/ 目录不存在
 """
+import os
 import sys
 import re
 import subprocess
 from pathlib import Path
 from dataclasses import dataclass, field
+
+# Windows + PowerShell 5.1 环境必须设 PYTHONIOENCODING,否则 subprocess 读 xelatex
+# 输出时 GBK 解码 Unicode 失败。Python 3.7+ utf-8 模式比 env 更稳。
+os.environ.setdefault("PYTHONIOENCODING", "utf-8")
+os.environ.setdefault("PYTHONUTF8", "1")
+if hasattr(sys, "setdefaultencoding"):
+    try:
+        sys.setdefaultencoding("utf-8")
+    except Exception:
+        pass
 
 # Windows GBK stdout 不支持 emoji,强制 UTF-8 输出
 if hasattr(sys.stdout, "reconfigure"):

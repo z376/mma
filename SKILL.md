@@ -70,7 +70,32 @@ metadata:
 
 ---
 
-## 必要输入
+## 必要准备(运行环境,Windows)
+
+| 工具 | 用途 | 检查 |
+|------|------|------|
+| **PowerShell 5.1** 或 PowerShell 7+ | 跑 .ps1 脚本 | `$PSVersionTable.PSVersion` |
+| **Python 3.10+** | 跑求解 .py | `py -3 --version` |
+| **xelatex**(MiKTeX / TeX Live) | 编译论文 PDF | `xelatex --version` |
+| **Git** | 推送到 GitHub | `git --version` |
+| **字体** | 思源宋体 OTF | `论文/fonts/SourceHanSerifCN-*.otf` |
+
+**必设环境变量**(避免 pandas 读 utf-8 CSV 乱码):
+```powershell
+$env:PYTHONIOENCODING = "utf-8"
+```
+在每次跑 `py` 之前设(或加到 `$PROFILE` 里)。
+
+**Python 脚本开头必加**(避免 stdout 乱码 + emoji 编码失败):
+```python
+import sys; sys.path.insert(0, r"<mma>\references\scripts")
+from data_utils import ensure_utf8_stdout, read_csv_safe, save_csv
+ensure_utf8_stdout()
+```
+
+---
+
+## 必要输入(题目材料)
 
 1. `题目/` 有 PDF/DOCX
 2. `数据/` 有 xlsx/csv(无附件题可空)
