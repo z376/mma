@@ -11,7 +11,7 @@ description: |
   Do NOT use for: general data analysis, one-off Python scripts, or research
   questions that don't lead to a 论文.pdf deliverable.
 metadata:
-  version: "3.1"  # 瘦身:description 触发词压缩 + 章节命名 references 化
+  version: "3.3"  # v3.3:新增 references/求解计划-template.md + examples/2025-C题-完整案例 + data_utils + 写作流程审计瘦身
   category: competition-workflow
   scope: user
   spec:
