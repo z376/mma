@@ -26,11 +26,14 @@ metadata:
     - role-prompts: references/role-prompts.md
     - decision-tree: references/model-decision-tree.md
     - code-template: references/code-template.py
+    - data-utils: references/scripts/data_utils.py        # 跨题通用数据工具(read_csv_safe 等)
     - eval-checklist: references/eval-checklist.md
     - ai-declaration-template: 论文/0.AI声明.tex
     - ai-detail-md-template: references/AI工具使用详情-template.md
     - ai-detail-tex-template: 论文/AI工具使用详情-template.tex
     - scripts: references/scripts/
+  examples:
+    - 2025-C题-完整案例: examples/2025-C题-完整案例/(4 个问题端到端:建模思路 + 求解代码 + 15 张图 + 11 个 csv + 实填 .tex)
   related-skills:
     - bzd-modeling-ideas: Stage 2 升级到 bzd 8 段结构
     - scipilot-figure-skill: 代码手 Stage 3 绘图原则已集成
@@ -117,6 +120,8 @@ ensure_utf8_stdout()
 - **模型决策树** → `references/model-decision-tree.md`
 - **验收清单** → `references/eval-checklist.md`
 - **辅助脚本** → `references/scripts/`(check_input / build / build_ai_detail / auto_verify)
+- **数据工具** → `references/scripts/data_utils.py`(read_csv_safe / save_csv / ensure_utf8_stdout)
+- **完整案例** → `examples/2025-C题-完整案例/`(2025 国赛 C 题 4 个问题端到端,可参考)
 
 ---
 
