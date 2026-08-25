@@ -295,16 +295,13 @@ B. 数值一致性
    - 正文里写的指标 vs 结果 csv
    - 图表 caption 里的数字 vs 实际图
 
-C. 硬规则
-   - 正文无 ①②③、1.2.3.
-   - 正文无 \textbf(只允许摘要/假设/优缺点)
-   - 无多余 \newpage
+C. 硬规则(基础 7 条见 `references/writing-rules.md`,以下是检查清单展开)
+   - 正文无 ①②③、1.2.3. / 无 \textbf(只允许摘要/假设/优缺点) / 无多余 \newpage / 无 \tableofcontents(2026 第四条)
    - 表格用 longtable 不用 tabular
    - 摘要 ≤1 页(编译后看 abstract:end 标签位置)
    - 每条 \bibitem 在正文有 \cite
    - 每张图有 \caption + \label
    - 图表全在正文被引用
-   - **无 \tableofcontents**(2026 规范第四条)
 
 D. 完整性(v3 章节结构,见 `references/chapter-structure.md`)
    - 11 个 .tex 全部存在(章节命名见 chapter-structure.md)

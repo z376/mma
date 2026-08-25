@@ -89,3 +89,4 @@
 - 任何 mma 文档**不要复制**这个表,只写"见 `references/chapter-structure.md`"
 - 例外:`examples/README.md` 可以简化为目录树(作为示例入口)
 - `references/scripts/auto_verify.py` 内置了 11 个 .tex 文件名清单(机器检查需要),**保持同步**:改此处时同步改 auto_verify.py 里的 `required` 列表
+- 写作硬规则(7 条 + 硬性数字)见 `references/writing-rules.md`(并列单一来源)

@@ -51,7 +51,7 @@
 
 ---
 
-## C. 硬规则(paper-spec.md)
+## C. 硬规则(7 条见 `references/writing-rules.md`,详细规范见 `paper-spec.md`)
 
 ### C.1 符号
 

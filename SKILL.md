@@ -20,7 +20,8 @@ metadata:
     rules: 2026 年《全国大学生数学建模竞赛参赛规则》(修订稿)
   extends:
     - workflow: references/workflow.md
-    - chapter-structure: references/chapter-structure.md  # 单一来源
+    - chapter-structure: references/chapter-structure.md  # 单一来源:章节命名
+    - writing-rules: references/writing-rules.md          # 单一来源:硬规则 + 硬性数字
     - paper-spec: references/paper-spec.md
     - role-prompts: references/role-prompts.md
     - decision-tree: references/model-decision-tree.md
@@ -84,8 +85,9 @@ metadata:
 ## 关键引用
 
 - **章节命名**(v3,单一来源) → `references/chapter-structure.md`
+- **硬规则 + 硬性数字**(单一来源) → `references/writing-rules.md`
 - **完整工作流** → `references/workflow.md`
-- **论文硬规则** → `references/paper-spec.md`
+- **论文详细规范** → `references/paper-spec.md`
 - **角色 prompt** → `references/role-prompts.md`
 - **模型决策树** → `references/model-decision-tree.md`
 - **验收清单** → `references/eval-checklist.md`
