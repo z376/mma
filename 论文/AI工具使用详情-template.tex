@@ -7,6 +7,9 @@
 %   1. 复制本文件为 AI工具使用详情.tex
 %   2. 填写【】占位符(每个章节都要填,无内容写"无")
 %   3. 跑 build.ps1(会自动编译并复制到 支撑材料/AI工具使用详情.pdf)
+%
+% 排版:声明风格——用粗体段落标题(无 \section* / \subsection*),
+%       整份文档像"参赛队填写的正式声明",不进入文章章节结构。
 \documentclass[a4paper,12pt]{article}
 
 % ===== 宏包 =====
@@ -36,28 +39,22 @@
 % ===== 行距 =====
 \renewcommand{\baselinestretch}{1.5}
 
-% ===== 标题格式 =====
-\usepackage{titlesec}
-\titleformat{\section}{\centering\Large\bfseries\song}{\thesection}{1em}{}
-\titleformat{\subsection}{\large\bfseries\song}{\thesubsection}{1em}{}
-
 % ===== 列表间距 =====
 \setlist{topsep=0.3em,itemsep=0.1em,parsep=0pt,leftmargin=1.5em}
 
-% ===== 标题与作者 =====
-\title{\song\bfseries\zihao{2} AI 工具使用详情}
-\author{}
-\date{}
-
 \begin{document}
 
-\maketitle
 \thispagestyle{empty}
+
+% ===== 标题(声明头) =====
+\begin{center}
+{\song\bfseries\zihao{2} AI 工具使用详情}
+\end{center}
 
 \vspace{1em}
 
 % ========== 一、所使用的 AI 工具 ==========
-\section*{一、所使用的 AI 工具}
+\noindent\textbf{一、所使用的 AI 工具}
 
 \begin{longtable}{>{\centering\arraybackslash}p{0.30\textwidth}>{\centering\arraybackslash}p{0.30\textwidth}>{\centering\arraybackslash}p{0.30\textwidth}}
   \toprule
@@ -76,7 +73,7 @@
 \end{longtable}
 
 % ========== 二、具体使用目的与环节 ==========
-\section*{二、具体使用目的与环节}
+\noindent\textbf{二、具体使用目的与环节}
 
 按问题 $\times$ 步骤二维表格填写:
 
@@ -98,12 +95,12 @@
 \end{longtable}
 
 % ========== 三、主要提示方式与使用过程 ==========
-\section*{三、主要提示方式与使用过程}
+\noindent\textbf{三、主要提示方式与使用过程}
 
 按时间顺序记录每次关键交互(\textbf{典型 3-5 个示例即可,每例 $\le$ 200 字}):
 
-\subsection*{示例 1:问题 X 第 Y 步}
-
+\vspace{0.5em}
+\noindent\textbf{示例 1:问题 X 第 Y 步}
 \begin{itemize}[itemindent=2em]
   \item \textbf{时段:}2026-XX-XX HH:MM $\sim$ HH:MM(约 X 分钟)
   \item \textbf{工具:}(工具名 + 版本)
@@ -112,8 +109,8 @@
   \item \textbf{人工动作:}采纳 / 修改 / 弃用,原因:...
 \end{itemize}
 
-\subsection*{示例 2:问题 X 第 Y 步}
-
+\vspace{0.5em}
+\noindent\textbf{示例 2:问题 X 第 Y 步}
 \begin{itemize}[itemindent=2em]
   \item \textbf{时段:}...
   \item \textbf{工具:}...
@@ -122,8 +119,8 @@
   \item \textbf{人工动作:}...
 \end{itemize}
 
-\subsection*{示例 3:问题 X 第 Y 步}
-
+\vspace{0.5em}
+\noindent\textbf{示例 3:问题 X 第 Y 步}
 \begin{itemize}[itemindent=2em]
   \item \textbf{时段:}...
   \item \textbf{工具:}...
@@ -133,28 +130,28 @@
 \end{itemize}
 
 % ========== 四、对 AI 输出的采纳、人工修改和核验情况 ==========
-\section*{四、对 AI 输出的采纳、人工修改和核验情况}
+\noindent\textbf{四、对 AI 输出的采纳、人工修改和核验情况}
 
 按问题分述。\textbf{语言润色不用展开},但其他环节(建模、求解、写作、绘图)必须说明:
 
-\subsection*{问题 1}
-
+\vspace{0.5em}
+\noindent\textbf{问题 1}
 \begin{itemize}[itemindent=2em]
   \item \textbf{采纳:}...(说明采纳了什么、为什么采纳)
   \item \textbf{人工修改:}...(修改了哪些、为什么)
   \item \textbf{核验:}...(怎么核验的、结果是否一致,如运行了哪些测试、对比了哪些 baseline)
 \end{itemize}
 
-\subsection*{问题 2}
-
+\vspace{0.5em}
+\noindent\textbf{问题 2}
 \begin{itemize}[itemindent=2em]
   \item \textbf{采纳:}...
   \item \textbf{人工修改:}...
   \item \textbf{核验:}...
 \end{itemize}
 
-\subsection*{问题 3}
-
+\vspace{0.5em}
+\noindent\textbf{问题 3}
 \begin{itemize}[itemindent=2em]
   \item \textbf{采纳:}...
   \item \textbf{人工修改:}...
@@ -162,9 +159,9 @@
 \end{itemize}
 
 % ========== 五、声明 ==========
-\section*{五、声明}
+\noindent\textbf{五、声明}
 
-\noindent {\song 本参赛队确认上述内容真实、准确,并承诺对 AI 参与完成的内容已逐项人工审查与核实。核心建模与分析由本参赛队主导完成,所有最终结论由参赛队独立负责。}
+{\song 本参赛队确认上述内容真实、准确,并承诺对 AI 参与完成的内容已逐项人工审查与核实。核心建模与分析由本参赛队主导完成,所有最终结论由参赛队独立负责。}
 
 \vspace{2em}
 
