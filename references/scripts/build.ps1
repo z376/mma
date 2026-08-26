@@ -138,6 +138,14 @@ if (Test-Path $aiTexFile) {
         Copy-Item -Path $aiPdfSrc -Destination $aiPdfDest -Force
         $size = (Get-Item $aiPdfDest).Length
         Write-Host "支撑材料/AI工具使用详情.pdf: $aiPdfDest ($([math]::Round($size/1KB, 1)) KB)" -ForegroundColor Green
+
+        # 避免冗余:删除 论文/AI工具使用详情.pdf(只保留 支撑材料/ 里的版本)
+        try {
+            [System.IO.File]::Delete($aiPdfSrc)
+            Write-Host "       已删除 论文/AI工具使用详情.pdf(冗余,仅留 支撑材料/ 版本)" -ForegroundColor DarkGray
+        } catch {
+            Write-Host "       [WARN] 删除 论文/AI工具使用详情.pdf 失败:$($_.Exception.Message)" -ForegroundColor Yellow
+        }
     }
 } else {
     Write-Host ""
